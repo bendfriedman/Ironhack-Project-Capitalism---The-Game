@@ -31,7 +31,7 @@ class Factory {
   }
   startProduction() {
     if (!this.producing && this.checkInput()) {
-      console.log("production started");
+      console.log(this.factoryName, "production started");
       this.producing = true;
       this.eatInputs();
 
@@ -54,7 +54,7 @@ class Factory {
   checkInput() {
     if (this.amountOfInputs === 1) {
       if (warehouse[this.inputType1] >= this.inputAmount1 * this.factoryCount) {
-        console.log("Input Check = True");
+        // console.log("Input Check = True");
         return true;
       }
     } else if (this.amountOfInputs === 2) {
@@ -62,11 +62,11 @@ class Factory {
         warehouse[this.inputType1] >= this.inputAmount1 * this.factoryCount &&
         warehouse[this.inputType2] >= this.inputAmount2 * this.factoryCount
       ) {
-        console.log("Input Check = True");
+        // console.log("Input Check = True");
         return true;
       }
     } else if (this.amountOfInputs === 0) {
-      console.log("Input Check = True");
+      //   console.log("Input Check = True");
       return true;
     }
   }

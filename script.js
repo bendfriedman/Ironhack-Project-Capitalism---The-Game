@@ -2,6 +2,7 @@ const moneyCounter = document.getElementById("money-count");
 const resourceCounter = document.querySelectorAll(".res-counter");
 const monthCounter = document.getElementById("month-counter");
 const dayCounter = document.getElementById("day-counter");
+const factoryCards = document.querySelectorAll(".factory-card");
 
 let gameLoopTimerId = null;
 
@@ -18,6 +19,15 @@ const warehouse = {
   burgers: 0,
 };
 
+function capitalizeFirstLetters(text) {
+  let newText = text.split(" ");
+
+  newText.forEach((word, index) => {
+    newText[index] = word[0].toUpperCase() + word.slice(1);
+  });
+  return newText.join(" ");
+}
+
 function update() {
   moneyCounter.innerText = currentMoney;
   monthCounter.innerText = currentMonth.toString().padStart(2, "0");
@@ -27,7 +37,7 @@ function update() {
     resource.innerText = warehouse[resource.id];
   });
 
-  activeFactories.forEach((e) => e.startProduction());
+  //   activeFactories.forEach((e) => e.startProduction());
 }
 
 function gameLoop() {
@@ -38,8 +48,8 @@ gameLoopTimerId = setInterval(() => {
   gameLoop();
 }, 30 / 1000);
 
-const wheatFactory = new Factory(
-  "Wheat Factory",
+const wheatFarm = new Factory(
+  "wheat farm",
   0,
   null,
   null,
@@ -54,7 +64,7 @@ const wheatFactory = new Factory(
 );
 
 const cowFactory = new Factory(
-  "Cow Factory",
+  "cow farm",
   1,
   "wheat",
   100,
@@ -68,6 +78,22 @@ const cowFactory = new Factory(
   100
 );
 
-const factories = [wheatFactory, cowFactory];
+const factories = [wheatFarm, cowFactory];
 
-const activeFactories = [wheatFactory, cowFactory];
+const activeFactories = [wheatFarm, cowFactory];
+
+function updateFactoryCards() {
+  factoryCards.forEach((card) => {
+    activeFactories.forEach((factory) => {
+      if (factory.factoryName === card.id) {
+        card.classList.toggle("active");
+        card.querySelector(".title-text").innerText = capitalizeFirstLetters(
+          factory.factoryName
+        );
+        card.querySelector("span.cost-text").innerText = factory.buildCost;
+      }
+    });
+  });
+}
+
+// updateFactoryCards();
