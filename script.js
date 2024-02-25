@@ -4,10 +4,8 @@ const monthCounter = document.getElementById("month-counter");
 const dayCounter = document.getElementById("day-counter");
 
 let gameLoopTimerId = null;
-// const secondsPerDay = 5;
 
-let currentMoney = 5000;
-let currentMonth = 3;
+let currentMonth = 1;
 let currentDay = 1;
 
 const warehouse = {
@@ -28,6 +26,8 @@ function update() {
   resourceCounter.forEach((resource) => {
     resource.innerText = warehouse[resource.id];
   });
+
+  activeFactories.forEach((e) => e.startProduction());
 }
 
 function gameLoop() {
@@ -38,12 +38,29 @@ gameLoopTimerId = setInterval(() => {
   gameLoop();
 }, 30 / 1000);
 
-const testFactory = new Factory(
+const wheatFactory = new Factory(
+  "Wheat Factory",
+  0,
+  null,
+  null,
+  null,
+  null,
+  1,
+  "wheat",
+  10,
+  null,
+  null,
+  10
+);
+
+const cowFactory = new Factory(
   "Cow Factory",
+  1,
   "wheat",
   100,
   null,
   null,
+  2,
   "cows",
   1,
   "milk",
@@ -51,6 +68,6 @@ const testFactory = new Factory(
   100
 );
 
-// console.log(testFactory.checkInput());
-// console.log(warehouse[testFactory.inputType1]);
-testFactory.startProduction();
+const factories = [wheatFactory, cowFactory];
+
+const activeFactories = [wheatFactory, cowFactory];

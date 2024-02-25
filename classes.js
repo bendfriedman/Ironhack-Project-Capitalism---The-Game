@@ -1,10 +1,12 @@
 class Factory {
   constructor(
     name,
+    amountOfInputs,
     inputType1,
     inputAmount1,
     inputType2,
     inputAmount2,
+    amountOfOutputs,
     outputType1,
     outputAmount1,
     outputType2,
@@ -12,52 +14,69 @@ class Factory {
     cost
   ) {
     this.factoryName = name;
+    this.amountOfInputs = amountOfInputs;
     this.inputType1 = inputType1;
     this.inputAmount1 = inputAmount1;
     this.inputType2 = inputType2;
     this.inputAmount2 = inputAmount2;
+    this.amountOfOutputs = amountOfOutputs;
     this.outputType1 = outputType1;
     this.outputAmount1 = outputAmount1;
     this.outputType2 = outputType2;
     this.outputAmount2 = outputAmount2;
     this.buildCost = cost;
     this.factoryCount = 1;
-    this.timerId = null;
+    this.productionTimerId = null;
+    this.producing = false;
   }
   startProduction() {
-    if (this.checkInput()) {
+    if (!this.producing && this.checkInput()) {
       console.log("production started");
-      let i = 0;
-      this.timerId = setInterval(() => {
-        if (i % 5 === 0) {
-          warehouse[this.outputType1] += this.outputAmount1;
-          if (this.outputType2 !== 0) {
-            warehouse[this.outputType2] += this.outputAmount2;
-          }
+      this.producing = true;
+      this.eatInputs();
 
-          //   clearInterval(this.timerId);
-        }
+      let i = 0;
+      this.productionTimerId = setInterval(() => {
         i++;
+        if (i % secondsPerDay === 0) {
+          warehouse[this.outputType1] += this.outputAmount1 * this.factoryCount;
+          if (this.amountOfOutputs === 2) {
+            warehouse[this.outputType2] +=
+              this.outputAmount2 * this.factoryCount;
+          }
+          this.producing = false;
+          clearInterval(this.productionTimerId);
+        }
+        console.log(i);
       }, 1000);
     }
   }
   checkInput() {
-    if (this.inputType1 !== null && this.inputType2 === null) {
-      if (warehouse[this.inputType1] === this.inputAmount1) {
+    if (this.amountOfInputs === 1) {
+      if (warehouse[this.inputType1] >= this.inputAmount1 * this.factoryCount) {
         console.log("Input Check = True");
         return true;
       }
-    } else if (this.inputType1 !== null && this.inputType2 !== null) {
+    } else if (this.amountOfInputs === 2) {
       if (
-        warehouse[this.inputType1] === this.inputAmount1 &&
-        warehouse[this.inputType2] === this.inputAmount2
+        warehouse[this.inputType1] >= this.inputAmount1 * this.factoryCount &&
+        warehouse[this.inputType2] >= this.inputAmount2 * this.factoryCount
       ) {
         console.log("Input Check = True");
         return true;
       }
-    } else if (this.inputType1 === null && this.inputType2 === null) {
+    } else if (this.amountOfInputs === 0) {
       console.log("Input Check = True");
       return true;
+    }
+  }
+
+  eatInputs() {
+    if (this.amountOfInputs === 1) {
+      warehouse[this.inputType1] -= this.inputAmount1 * this.factoryCount;
+    }
+    if (this.amountOfInputs === 2) {
+      warehouse[this.inputType2] -= this.inputAmount2 * this.factoryCount;
     }
   }
 }

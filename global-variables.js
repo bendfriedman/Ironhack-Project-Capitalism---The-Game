@@ -1,1 +1,2 @@
-const secondsPerDay = 5;
+const secondsPerDay = 1;
+let currentMoney = 2000;
