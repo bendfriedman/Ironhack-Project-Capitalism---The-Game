@@ -1,0 +1,1 @@
+const secondsPerDay = 5;

@@ -9,25 +9,28 @@
   <body>
     <section id="resources">
       <div class="resource-card">
-        <p>Wheat: <span>0</span></p>
+        <p>Wheat: <span id="wheat" class="res-counter">0</span></p>
       </div>
       <div class="resource-card">
-        <p>Flour: <span>0</span></p>
+        <p>Flour: <span id="flour" class="res-counter">0</span></p>
       </div>
       <div class="resource-card">
-        <p>Bread: <span>0</span></p>
+        <p>Bread: <span id="bread" class="res-counter">0</span></p>
       </div>
       <div class="resource-card">
-        <p>Cows: <span>0</span></p>
+        <p>Cows: <span id="cows" class="res-counter">0</span></p>
       </div>
       <div class="resource-card">
-        <p>Milk: <span>0</span></p>
+        <p>Milk: <span id="milk" class="res-counter">0</span></p>
       </div>
       <div class="resource-card">
-        <p>Meat: <span>0</span></p>
+        <p>Meat: <span id="meat" class="res-counter">0</span></p>
       </div>
       <div class="resource-card">
-        <p>Secret: <span>0</span></p>
+        <p>
+          Burgers:
+          <span id="burgers" class="res-counter">0</span>
+        </p>
       </div>
     </section>
 
@@ -244,7 +247,9 @@
         <div id="logo"><img src="/img/factory.png" alt="logo" /></div>
       </div>
       <div id="money-box">
-        <div id="current-money"><p>5500 €</p></div>
+        <div id="current-money">
+          <p><span id="money-count">5000</span> €</p>
+        </div>
         <div id="money-img">
           <img src="/img/coins-2.png" alt="image of coins" />
         </div>
@@ -257,8 +262,12 @@
       </div>
       <div id="date-box">
         <div>
-          <div id="month"><p>Month: 02</p></div>
-          <div id="day"><p>Day: 13</p></div>
+          <div id="month">
+            <p>Month: <span id="month-counter">02</span></p>
+          </div>
+          <div id="day">
+            <p>Day: <span id="day-counter">13</span></p>
+          </div>
         </div>
         <div id="clock-img">
           <img src="/img/clock.png" alt="image of a clock" />
@@ -266,6 +275,8 @@
       </div>
     </section>
 
+    <script src="/global-variables.js"></script>
+    <script src="/classes.js"></script>
     <script src="/script.js"></script>
   </body>
 </html>
