@@ -9,16 +9,6 @@ let gameLoopTimerId = null;
 let currentMonth = 1;
 let currentDay = 1;
 
-const warehouse = {
-  wheat: 100,
-  flour: 0,
-  bread: 0,
-  cows: 0,
-  milk: 0,
-  meat: 0,
-  burgers: 0,
-};
-
 function capitalizeFirstLetters(text) {
   let newText = text.split(" ");
 
@@ -37,30 +27,50 @@ function update() {
     resource.innerText = warehouse[resource.id];
   });
 
-  //   activeFactories.forEach((e) => e.startProduction());
+  activeFactories.forEach((e) => e.startProduction());
+  updateFactoryCards();
 }
 
 function gameLoop() {
   update();
 }
 
-gameLoopTimerId = setInterval(() => {
-  gameLoop();
-}, 30 / 1000);
+function gameStart() {
+  gameLoopTimerId = setInterval(() => {
+    gameLoop();
+  }, 30 / 1000);
+}
+
+gameStart();
 
 const wheatFarm = new Factory(
   "wheat farm",
   0,
   null,
+  0,
   null,
-  null,
-  null,
+  0,
   1,
   "wheat",
   10,
   null,
-  null,
+  0,
   10
+);
+
+const mill = new Factory(
+  "mill",
+  1,
+  "wheat",
+  30,
+  null,
+  null,
+  1,
+  "flour",
+  20,
+  null,
+  null,
+  20
 );
 
 const cowFactory = new Factory(
@@ -78,22 +88,66 @@ const cowFactory = new Factory(
   100
 );
 
-const factories = [wheatFarm, cowFactory];
+const factories = [wheatFarm, mill, cowFactory];
 
-const activeFactories = [wheatFarm, cowFactory];
+const activeFactories = [wheatFarm];
 
 function updateFactoryCards() {
   factoryCards.forEach((card) => {
     activeFactories.forEach((factory) => {
       if (factory.factoryName === card.id) {
-        card.classList.toggle("active");
+        if (factory.factoryCount > 0) {
+          card.classList.add("active");
+        }
+
         card.querySelector(".title-text").innerText = capitalizeFirstLetters(
           factory.factoryName
         );
         card.querySelector("span.cost-text").innerText = factory.buildCost;
+
+        //update Inputs on factory cards
+        if (factory.amountOfInputs === 0) {
+          card.querySelector(".input").style.display = "none";
+        } else {
+          card.querySelector(".inputAmount1").innerText = factory.inputAmount1;
+          card.querySelector(".inputType1").innerText = factory.inputType1;
+          if (factory.amountOfInputs === 2) {
+            card.querySelector(".inputAmount2").innerText =
+              " + " + factory.inputAmount2;
+            card.querySelector(".inputType2").innerText = factory.inputType2;
+          }
+        }
+
+        //update Outputs on factory cards
+        card.querySelector(".outputAmount1").innerText = factory.outputAmount1;
+        card.querySelector(".outputType1").innerText = factory.outputType1;
+        if (factory.amountOfOutputs === 2) {
+          card.querySelector(".outputAmount2").innerText =
+            " + " + factory.outputAmount2;
+          card.querySelector(".outputType2").innerText = factory.outputType2;
+        }
+
+        //update factoryCount
+        card.querySelector(".factoryCount").innerText = factory.factoryCount
+          .toString()
+          .padStart(2, "0");
       }
     });
   });
 }
 
-// updateFactoryCards();
+function checkBtnClicked() {
+  const allBuyBtns = document.querySelectorAll(".buy-btn");
+  allBuyBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeFactories.forEach((factory) => {
+        if (factory.factoryName === button.name) {
+          factory.buildFactory();
+        }
+      });
+      // updateFactoryCards();
+    });
+  });
+}
+
+checkBtnClicked();

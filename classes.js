@@ -25,7 +25,8 @@ class Factory {
     this.outputType2 = outputType2;
     this.outputAmount2 = outputAmount2;
     this.buildCost = cost;
-    this.factoryCount = 1;
+    this.factoryCount = 0;
+    this.maxFactoryCount = 99;
     this.productionTimerId = null;
     this.producing = false;
   }
@@ -47,7 +48,6 @@ class Factory {
           this.producing = false;
           clearInterval(this.productionTimerId);
         }
-        console.log(i);
       }, 1000);
     }
   }
@@ -77,6 +77,21 @@ class Factory {
     }
     if (this.amountOfInputs === 2) {
       warehouse[this.inputType2] -= this.inputAmount2 * this.factoryCount;
+    }
+  }
+
+  buildFactory() {
+    if (
+      currentMoney >= this.buildCost &&
+      this.factoryCount < this.maxFactoryCount
+    ) {
+      this.factoryCount += 1;
+      currentMoney -= this.buildCost;
+      buySound.volume = 0.5;
+      buySound.play();
+      console.log("You built 1x", this.factoryName);
+    } else {
+      console.log("not enought money!");
     }
   }
 }

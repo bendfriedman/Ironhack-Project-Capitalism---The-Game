@@ -43,9 +43,12 @@
         <div class="factory-column c-2">
           <div class="factory-title">
             <h2 class="title-text">Factory Name</h2>
+            <div id="amountOfFactories">
+              <p><span class="factoryCount">00</span></p>
+            </div>
           </div>
           <div class="factory-info">
-            <div class="info-row r-1">
+            <div class="info-row r-1 input">
               <div>
                 <img
                   class="arrow-img"
@@ -53,9 +56,16 @@
                   alt="arrow left"
                 />
               </div>
-              <div><p>Requires: 0 / 100 Wheat</p></div>
+              <div>
+                <p>
+                  Requires: <span class="inputAmount1">0</span>
+                  <span class="inputType1">Type1</span
+                  ><span class="inputAmount2"></span>
+                  <span class="inputType2"></span>
+                </p>
+              </div>
             </div>
-            <div class="info-row r-2">
+            <div class="info-row r-2 output">
               <div>
                 <img
                   class="arrow-img"
@@ -63,7 +73,14 @@
                   alt="arrow right"
                 />
               </div>
-              <div><p>Produces: 1x Cow + 5x Milk</p></div>
+              <div>
+                <p>
+                  Produces: <span class="outputAmount1">0</span>
+                  <span class="outputType1">Cow</span
+                  ><span class="outputAmount2"></span>
+                  <span class="outputType2"></span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -72,7 +89,9 @@
             <h3>Cost: <span class="cost-text">10</span> €</h3>
           </div>
           <div class="factory-btn">
-            <button type="button" name="wheat">BUY 1x</button>
+            <button type="button" class="buy-btn" name="wheat farm">
+              BUY 1x
+            </button>
           </div>
         </div>
       </div>
