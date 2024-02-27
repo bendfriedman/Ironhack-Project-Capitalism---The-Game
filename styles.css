@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:100,300,700");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
 
 html,
 body {
-  font-family: "Roboto";
+  /* font-family: "Roboto"; */
+  font-family: "Fredoka", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -17,7 +19,11 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  font-family: "Roboto Condensed";
+  /* font-family: "Roboto Condensed"; */
+}
+
+h3 {
+  font-weight: 500;
 }
 
 section {
@@ -61,12 +67,39 @@ section {
   border-radius: 5px;
   box-shadow: 5px 5px 10px #8684dc;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+}
+
+.resource-img {
+  width: 50px;
+  margin-left: 10px;
 }
 
 .resource-card > p {
   font-size: 1.7rem;
+}
+
+.sell-btn-container {
+  margin-right: 10px;
+  text-align: end;
+}
+
+.sell-btn {
+  height: 50px;
+  width: 50px;
+  font-weight: bold;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  border-color: #83ff8c;
+  background: url(/img/coins-2.png) no-repeat;
+  background-size: 30px 30px;
+  background-position: center;
+  background-color: #26c224;
+}
+
+.sell-btn:active {
+  background-color: #2fdd3b;
 }
 
 .factory-card {
@@ -108,7 +141,7 @@ section {
 .factory-title {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -117,6 +150,8 @@ section {
   padding: 1px 5px;
   background-color: #bcbbff;
   font-size: 1.3rem;
+  width: 25px;
+  text-align: center;
 }
 
 .factory-info {
@@ -211,15 +246,21 @@ section {
 }
 
 #date-box {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 1.7rem;
   border: solid 5px #555fa4;
   box-shadow: 0px 0px 10px #555fa4;
 }
 
+#month-day {
+  margin-left: 20px;
+}
+
 #clock-img {
-  display: flex;
-  align-items: center;
+  text-align: center;
+  margin-right: 20px;
 }
 
 #clock-img > img {

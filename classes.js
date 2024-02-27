@@ -31,7 +31,7 @@ class Factory {
     this.producing = false;
   }
   startProduction() {
-    if (!this.producing && this.checkInput()) {
+    if (!this.producing && this.checkInput() && this.factoryCount > 0) {
       console.log(this.factoryName, "production started");
       this.producing = true;
       this.eatInputs();
@@ -53,20 +53,17 @@ class Factory {
   }
   checkInput() {
     if (this.amountOfInputs === 1) {
-      if (warehouse[this.inputType1] >= this.inputAmount1 * this.factoryCount) {
-        // console.log("Input Check = True");
+      if (warehouse[this.inputType1] > this.inputAmount1 * this.factoryCount) {
         return true;
       }
     } else if (this.amountOfInputs === 2) {
       if (
-        warehouse[this.inputType1] >= this.inputAmount1 * this.factoryCount &&
-        warehouse[this.inputType2] >= this.inputAmount2 * this.factoryCount
+        warehouse[this.inputType1] > this.inputAmount1 * this.factoryCount &&
+        warehouse[this.inputType2] > this.inputAmount2 * this.factoryCount
       ) {
-        // console.log("Input Check = True");
         return true;
       }
     } else if (this.amountOfInputs === 0) {
-      //   console.log("Input Check = True");
       return true;
     }
   }
@@ -83,11 +80,11 @@ class Factory {
   buildFactory() {
     if (
       currentMoney >= this.buildCost &&
-      this.factoryCount < this.maxFactoryCount
+      this.factoryCount < this.maxFactoryCount &&
+      !gameOver
     ) {
       this.factoryCount += 1;
       currentMoney -= this.buildCost;
-      buySound.volume = 0.5;
       buySound.play();
       console.log("You built 1x", this.factoryName);
     } else {
