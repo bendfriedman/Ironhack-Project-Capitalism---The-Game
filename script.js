@@ -1,3 +1,11 @@
+const splashStartBtn = document.getElementById("splash-start-btn");
+const splashScreen = document.getElementById("splash-screen");
+const gameScreen = document.getElementById("game-screen");
+const gameOverScreen = document.getElementById("game-over-screen");
+const gameOverMsg = document.getElementById("game-over-msg");
+const gameOverScore = document.getElementById("game-over-score");
+const gameOverRestartBtn = document.getElementById("go-restart-btn");
+const gameOverMenuBtn = document.getElementById("go-menu-btn");
 const moneyCounter = document.getElementById("money-count");
 const resourceCounter = document.querySelectorAll(".res-counter");
 const resourceCards = document.querySelectorAll(".resource-card");
@@ -12,6 +20,8 @@ let currentMoney = startMoney;
 let currentMonth = startMonth;
 let currentDay = startDay;
 const daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+const screens = [splashScreen, gameScreen, gameOverScreen];
 
 const wheatFarm = new Factory(
   "wheat farm",
@@ -114,6 +124,27 @@ const activeFactories = [
   burgerStore,
 ];
 
+splashStartBtn.addEventListener("click", () => {
+  startGame();
+});
+
+gameOverRestartBtn.addEventListener("click", () => {
+  startGame();
+});
+
+gameOverMenuBtn.addEventListener("click", () => {
+  switchScreen(splashScreen);
+});
+
+function switchScreen(switchedScreen) {
+  screens.forEach((screen) => {
+    if (screen != switchedScreen) {
+      screen.style.display = "none";
+    }
+    switchedScreen.style.display = "flex";
+  });
+}
+
 function capitalizeFirstLetters(text) {
   let newText = text.split(" ");
 
@@ -146,47 +177,78 @@ function startDayTimer() {
         currentDay++;
       } else if (currentMonth < 12) {
         currentMonth++;
-        currentDay = 0;
+        currentDay = 1;
       } else {
         currentMonth = 0;
         currentDay = 0;
-        checkGameOver();
+        GameOver();
         clearInterval(dayTimerId);
       }
     }
   }, 1000);
 }
 
-function checkGameOver() {
+function GameOver() {
   if (currentDay === 0 && currentMonth === 0) {
     gameOver = true;
     update();
     clearInterval(gameLoopTimerId);
+    gameOverScore.innerText = currentMoney;
     if (currentMoney < 1000 * 1000) {
+      gameOverMsg.innerText = loseMessage;
       console.log("GAME OVER! YOU LOSE!");
     } else {
+      gameOverMsg.innerText = winMessage;
       console.log("CONGRATS, YOU WON!!!");
     }
+
+    let i = 0;
+    let tempVolumeStorage = bgMusic.volume;
+    const gameOverTimerId = setInterval(() => {
+      i++;
+
+      if (i % secondsBeforeGameOverScreen === 0) {
+        switchScreen(gameOverScreen);
+      }
+      if (i % secondsForBgMusicFadeOut === 0) {
+        bgMusic.pause();
+        clearInterval(gameOverTimerId);
+      } else {
+        bgMusic.volume -= tempVolumeStorage / secondsForBgMusicFadeOut;
+      }
+    }, 1000);
   }
 }
 
 function startGameLoop() {
   gameOver = false;
+  resetGame();
   gameLoopTimerId = setInterval(() => {
     update();
   }, 30 / 1000);
   startDayTimer();
   updateCards();
   checkBtnClicked();
-  // bgMusic.play();
+  bgMusic.play();
 }
 
-startGameLoop();
+function startGame() {
+  switchScreen(gameScreen);
+  startGameLoop();
+}
 
 function resetGame() {
   currentDay = startDay;
   currentMonth = startMonth;
   currentMoney = startMoney;
+  bgMusic.currentTime = 0;
+  bgMusic.volume = startBgMusicVolume;
+  //reset resources to 0
+  for (resource in warehouse) {
+    warehouse[resource] = 0;
+  }
+  //reset factories
+  activeFactories.forEach((factory) => (factory.factoryCount = 0));
 }
 
 function updateCards() {
@@ -257,7 +319,7 @@ function checkBtnClicked() {
   const allSellBtns = document.querySelectorAll(".sell-btn");
   allSellBtns.forEach((button) => {
     button.addEventListener("click", () => {
-      if (warehouse[button.name] > 0) {
+      if (warehouse[button.name] > 0 && !gameOver) {
         let tempAmount = warehouse[button.name];
         warehouse[button.name] -= tempAmount;
         currentMoney += resourePrices[button.name] * tempAmount;

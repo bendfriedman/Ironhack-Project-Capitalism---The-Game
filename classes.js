@@ -58,8 +58,8 @@ class Factory {
       }
     } else if (this.amountOfInputs === 2) {
       if (
-        warehouse[this.inputType1] > this.inputAmount1 * this.factoryCount &&
-        warehouse[this.inputType2] > this.inputAmount2 * this.factoryCount
+        warehouse[this.inputType1] >= this.inputAmount1 * this.factoryCount &&
+        warehouse[this.inputType2] >= this.inputAmount2 * this.factoryCount
       ) {
         return true;
       }

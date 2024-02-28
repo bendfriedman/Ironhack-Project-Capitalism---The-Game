@@ -1,14 +1,19 @@
 let gameOver = false;
-const secondsPerDay = 1;
-let startMoney = 9999;
-let startMonth = 12;
-let startDay = 25;
-
+const secondsPerDay = 3;
+const secondsBeforeGameOverScreen = 6;
+const secondsForBgMusicFadeOut = 10;
+const startMoney = 10;
+const startMonth = 1;
+const startDay = 1;
+const loseMessage =
+  "You lost! You did not manage to become a millionaire in time.  :(";
+const winMessage = "You won!!! Congrats, you are a millionaire!!! :)";
 //music + sounds
 const buySound = new Audio("sounds/reload.mp3");
 buySound.volume = 0.3;
 const bgMusic = new Audio("sounds/025_A_New_Town.mp3");
-bgMusic.volume = 0.2;
+const startBgMusicVolume = 0.2;
+bgMusic.volume = startBgMusicVolume;
 bgMusic.loop = true;
 const sellSound = new Audio("sounds/cash-register-kaching-sound-effect.mp3");
 sellSound.volume = 0.4;

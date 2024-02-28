@@ -7,464 +7,524 @@
     <title>Capitalism Game</title>
   </head>
   <body>
-    <section id="resources">
-      <!--wheat-->
-      <div class="resource-card">
-        <img class="resource-img" src="/img/wheat.png" alt="image of wheat" />
-        <p><span id="wheat" class="res-counter">0</span></p>
-        <div class="sell-btn-container">
-          <h3>Price: <span class="sales-price" name="wheat">00</span> €</h3>
-          <button class="sell-btn" name="wheat"></button>
-        </div>
+    <div id="splash-screen">
+      <div id="splash-logo">
+        <img src="/img/factory.png" alt="logo on splash-screen" />
       </div>
-      <!--flour-->
-      <div class="resource-card">
-        <img class="resource-img" src="/img/flour.png" alt="image of flour" />
-        <p><span id="flour" class="res-counter">0</span></p>
-        <div class="sell-btn-container">
-          <h3>Price: <span class="sales-price" name="flour">00</span> €</h3>
-          <button class="sell-btn" name="flour"></button>
-        </div>
+      <div id="splash-title">
+        <h1>Capitalism: The Game</h1>
       </div>
-      <!--cows-->
-      <div class="resource-card">
-        <img class="resource-img" src="/img/cow.png" alt="image of cow" />
-        <p><span id="cows" class="res-counter">0</span></p>
-        <div class="sell-btn-container">
-          <h3>Price: <span class="sales-price" name="cows">00</span> €</h3>
-          <button class="sell-btn" name="cows"></button>
-        </div>
+      <div id="start-btn-container">
+        <button id="splash-start-btn">START THE GAME</button>
       </div>
-      <!--milk-->
-      <div class="resource-card">
-        <img class="resource-img" src="/img/milk.png" alt="image of milk" />
-        <p><span id="milk" class="res-counter">0</span></p>
-        <div class="sell-btn-container">
-          <h3>Price: <span class="sales-price" name="milk">00</span> €</h3>
-          <button class="sell-btn" name="milk"></button>
-        </div>
-      </div>
-      <!--bread-->
-      <div class="resource-card">
-        <img class="resource-img" src="/img/bread.png" alt="image of bread" />
-        <p><span id="bread" class="res-counter">0</span></p>
-        <div class="sell-btn-container">
-          <h3>Price: <span class="sales-price" name="bread">00</span> €</h3>
-          <button class="sell-btn" name="bread"></button>
-        </div>
-      </div>
-      <!--meat-->
-      <div class="resource-card">
-        <img class="resource-img" src="/img/meat.png" alt="image of meat" />
-        <p><span id="meat" class="res-counter">0</span></p>
-        <div class="sell-btn-container">
-          <h3>Price: <span class="sales-price" name="meat">00</span> €</h3>
-          <button class="sell-btn" name="meat"></button>
-        </div>
-      </div>
-      <!--burgers-->
-      <div class="resource-card">
-        <img class="resource-img" src="/img/burger.png" alt="image of burger" />
-        <p><span id="burgers" class="res-counter">0</span></p>
-        <div class="sell-btn-container">
-          <h3>Price: <span class="sales-price" name="burgers">00</span> €</h3>
-          <button class="sell-btn" name="burgers"></button>
-        </div>
-      </div>
-    </section>
+    </div>
 
-    <section id="factories">
-      <!--Wheat Farm-->
-      <div class="factory-card" id="wheat farm">
-        <div class="factory-column c-1">
-          <img class="factory-img" src="/img/factory.png" alt="factory image" />
-        </div>
-        <div class="factory-column c-2">
-          <div class="factory-title">
-            <h2 class="title-text">Factory Name</h2>
-            <div id="amountOfFactories">
-              <p><span class="factoryCount">00</span></p>
-            </div>
-          </div>
-          <div class="factory-info">
-            <div class="info-row r-1 input">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-left.png"
-                  alt="arrow left"
-                />
-              </div>
-              <div>
-                <p>
-                  Requires: <span class="inputAmount1">0</span>
-                  <span class="inputType1">Type1</span
-                  ><span class="inputAmount2"></span>
-                  <span class="inputType2"></span>
-                </p>
-              </div>
-            </div>
-            <div class="info-row r-2 output">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-right.png"
-                  alt="arrow right"
-                />
-              </div>
-              <div>
-                <p>
-                  Produces: <span class="outputAmount1">0</span>
-                  <span class="outputType1">Cow</span
-                  ><span class="outputAmount2"></span>
-                  <span class="outputType2"></span>
-                </p>
-              </div>
-            </div>
+    <div id="game-screen">
+      <section id="resources">
+        <!--wheat-->
+        <div class="resource-card">
+          <img class="resource-img" src="/img/wheat.png" alt="image of wheat" />
+          <p><span id="wheat" class="res-counter">0</span></p>
+          <div class="sell-btn-container">
+            <h3>Price: <span class="sales-price" name="wheat">00</span> €</h3>
+            <button class="sell-btn" name="wheat"></button>
           </div>
         </div>
-        <div class="factory-column c-3">
-          <div class="factory-cost">
-            <h3>Cost: <span class="cost-text">10</span> €</h3>
-          </div>
-          <div class="factory-btn">
-            <button type="button" class="buy-btn" name="wheat farm">
-              BUY 1x
-            </button>
-          </div>
-        </div>
-      </div>
-      <!--Mill-->
-      <div class="factory-card" id="mill">
-        <div class="factory-column c-1">
-          <img class="factory-img" src="/img/factory.png" alt="factory image" />
-        </div>
-        <div class="factory-column c-2">
-          <div class="factory-title">
-            <h2 class="title-text">Factory Name</h2>
-            <div id="amountOfFactories">
-              <p><span class="factoryCount">00</span></p>
-            </div>
-          </div>
-          <div class="factory-info">
-            <div class="info-row r-1 input">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-left.png"
-                  alt="arrow left"
-                />
-              </div>
-              <div>
-                <p>
-                  Requires: <span class="inputAmount1">0</span>
-                  <span class="inputType1">Type1</span
-                  ><span class="inputAmount2"></span>
-                  <span class="inputType2"></span>
-                </p>
-              </div>
-            </div>
-            <div class="info-row r-2 output">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-right.png"
-                  alt="arrow right"
-                />
-              </div>
-              <div>
-                <p>
-                  Produces: <span class="outputAmount1">0</span>
-                  <span class="outputType1">Cow</span
-                  ><span class="outputAmount2"></span>
-                  <span class="outputType2"></span>
-                </p>
-              </div>
-            </div>
+        <!--flour-->
+        <div class="resource-card">
+          <img class="resource-img" src="/img/flour.png" alt="image of flour" />
+          <p><span id="flour" class="res-counter">0</span></p>
+          <div class="sell-btn-container">
+            <h3>Price: <span class="sales-price" name="flour">00</span> €</h3>
+            <button class="sell-btn" name="flour"></button>
           </div>
         </div>
-        <div class="factory-column c-3">
-          <div class="factory-cost">
-            <h3>Cost: <span class="cost-text">10</span> €</h3>
-          </div>
-          <div class="factory-btn">
-            <button type="button" class="buy-btn" name="mill">BUY 1x</button>
-          </div>
-        </div>
-      </div>
-      <!--Cow Farm-->
-      <div class="factory-card" id="cow farm">
-        <div class="factory-column c-1">
-          <img class="factory-img" src="/img/factory.png" alt="factory image" />
-        </div>
-        <div class="factory-column c-2">
-          <div class="factory-title">
-            <h2 class="title-text">Factory Name</h2>
-            <div id="amountOfFactories">
-              <p><span class="factoryCount">00</span></p>
-            </div>
-          </div>
-          <div class="factory-info">
-            <div class="info-row r-1 input">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-left.png"
-                  alt="arrow left"
-                />
-              </div>
-              <div>
-                <p>
-                  Requires: <span class="inputAmount1">0</span>
-                  <span class="inputType1">Type1</span
-                  ><span class="inputAmount2"></span>
-                  <span class="inputType2"></span>
-                </p>
-              </div>
-            </div>
-            <div class="info-row r-2 output">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-right.png"
-                  alt="arrow right"
-                />
-              </div>
-              <div>
-                <p>
-                  Produces: <span class="outputAmount1">0</span>
-                  <span class="outputType1">Cow</span
-                  ><span class="outputAmount2"></span>
-                  <span class="outputType2"></span>
-                </p>
-              </div>
-            </div>
+        <!--cows-->
+        <div class="resource-card">
+          <img class="resource-img" src="/img/cow.png" alt="image of cow" />
+          <p><span id="cows" class="res-counter">0</span></p>
+          <div class="sell-btn-container">
+            <h3>Price: <span class="sales-price" name="cows">00</span> €</h3>
+            <button class="sell-btn" name="cows"></button>
           </div>
         </div>
-        <div class="factory-column c-3">
-          <div class="factory-cost">
-            <h3>Cost: <span class="cost-text">10</span> €</h3>
-          </div>
-          <div class="factory-btn">
-            <button type="button" class="buy-btn" name="cow farm">
-              BUY 1x
-            </button>
-          </div>
-        </div>
-      </div>
-      <!--Bakery-->
-      <div class="factory-card" id="bakery">
-        <div class="factory-column c-1">
-          <img class="factory-img" src="/img/factory.png" alt="factory image" />
-        </div>
-        <div class="factory-column c-2">
-          <div class="factory-title">
-            <h2 class="title-text">Factory Name</h2>
-            <div id="amountOfFactories">
-              <p><span class="factoryCount">00</span></p>
-            </div>
-          </div>
-          <div class="factory-info">
-            <div class="info-row r-1 input">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-left.png"
-                  alt="arrow left"
-                />
-              </div>
-              <div>
-                <p>
-                  Requires: <span class="inputAmount1">0</span>
-                  <span class="inputType1">Type1</span
-                  ><span class="inputAmount2"></span>
-                  <span class="inputType2"></span>
-                </p>
-              </div>
-            </div>
-            <div class="info-row r-2 output">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-right.png"
-                  alt="arrow right"
-                />
-              </div>
-              <div>
-                <p>
-                  Produces: <span class="outputAmount1">0</span>
-                  <span class="outputType1">Cow</span
-                  ><span class="outputAmount2"></span>
-                  <span class="outputType2"></span>
-                </p>
-              </div>
-            </div>
+        <!--milk-->
+        <div class="resource-card">
+          <img class="resource-img" src="/img/milk.png" alt="image of milk" />
+          <p><span id="milk" class="res-counter">0</span></p>
+          <div class="sell-btn-container">
+            <h3>Price: <span class="sales-price" name="milk">00</span> €</h3>
+            <button class="sell-btn" name="milk"></button>
           </div>
         </div>
-        <div class="factory-column c-3">
-          <div class="factory-cost">
-            <h3>Cost: <span class="cost-text">10</span> €</h3>
-          </div>
-          <div class="factory-btn">
-            <button type="button" class="buy-btn" name="bakery">BUY 1x</button>
-          </div>
-        </div>
-      </div>
-      <!--Butchery-->
-      <div class="factory-card" id="butchery">
-        <div class="factory-column c-1">
-          <img class="factory-img" src="/img/factory.png" alt="factory image" />
-        </div>
-        <div class="factory-column c-2">
-          <div class="factory-title">
-            <h2 class="title-text">Factory Name</h2>
-            <div id="amountOfFactories">
-              <p><span class="factoryCount">00</span></p>
-            </div>
-          </div>
-          <div class="factory-info">
-            <div class="info-row r-1 input">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-left.png"
-                  alt="arrow left"
-                />
-              </div>
-              <div>
-                <p>
-                  Requires: <span class="inputAmount1">0</span>
-                  <span class="inputType1">Type1</span
-                  ><span class="inputAmount2"></span>
-                  <span class="inputType2"></span>
-                </p>
-              </div>
-            </div>
-            <div class="info-row r-2 output">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-right.png"
-                  alt="arrow right"
-                />
-              </div>
-              <div>
-                <p>
-                  Produces: <span class="outputAmount1">0</span>
-                  <span class="outputType1">Cow</span
-                  ><span class="outputAmount2"></span>
-                  <span class="outputType2"></span>
-                </p>
-              </div>
-            </div>
+        <!--bread-->
+        <div class="resource-card">
+          <img class="resource-img" src="/img/bread.png" alt="image of bread" />
+          <p><span id="bread" class="res-counter">0</span></p>
+          <div class="sell-btn-container">
+            <h3>Price: <span class="sales-price" name="bread">00</span> €</h3>
+            <button class="sell-btn" name="bread"></button>
           </div>
         </div>
-        <div class="factory-column c-3">
-          <div class="factory-cost">
-            <h3>Cost: <span class="cost-text">10</span> €</h3>
-          </div>
-          <div class="factory-btn">
-            <button type="button" class="buy-btn" name="butchery">
-              BUY 1x
-            </button>
-          </div>
-        </div>
-      </div>
-      <!--Burger Store-->
-      <div class="factory-card" id="burger store">
-        <div class="factory-column c-1">
-          <img class="factory-img" src="/img/factory.png" alt="factory image" />
-        </div>
-        <div class="factory-column c-2">
-          <div class="factory-title">
-            <h2 class="title-text">Factory Name</h2>
-            <div id="amountOfFactories">
-              <p><span class="factoryCount">00</span></p>
-            </div>
-          </div>
-          <div class="factory-info">
-            <div class="info-row r-1 input">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-left.png"
-                  alt="arrow left"
-                />
-              </div>
-              <div>
-                <p>
-                  Requires: <span class="inputAmount1">0</span>
-                  <span class="inputType1">Type1</span
-                  ><span class="inputAmount2"></span>
-                  <span class="inputType2"></span>
-                </p>
-              </div>
-            </div>
-            <div class="info-row r-2 output">
-              <div>
-                <img
-                  class="arrow-img"
-                  src="/img/arrow-right.png"
-                  alt="arrow right"
-                />
-              </div>
-              <div>
-                <p>
-                  Produces: <span class="outputAmount1">0</span>
-                  <span class="outputType1">Cow</span
-                  ><span class="outputAmount2"></span>
-                  <span class="outputType2"></span>
-                </p>
-              </div>
-            </div>
+        <!--meat-->
+        <div class="resource-card">
+          <img class="resource-img" src="/img/meat.png" alt="image of meat" />
+          <p><span id="meat" class="res-counter">0</span></p>
+          <div class="sell-btn-container">
+            <h3>Price: <span class="sales-price" name="meat">00</span> €</h3>
+            <button class="sell-btn" name="meat"></button>
           </div>
         </div>
-        <div class="factory-column c-3">
-          <div class="factory-cost">
-            <h3>Cost: <span class="cost-text">10</span> €</h3>
-          </div>
-          <div class="factory-btn">
-            <button type="button" class="buy-btn" name="burger store">
-              BUY 1x
-            </button>
+        <!--burgers-->
+        <div class="resource-card">
+          <img
+            class="resource-img"
+            src="/img/burger.png"
+            alt="image of burger"
+          />
+          <p><span id="burgers" class="res-counter">0</span></p>
+          <div class="sell-btn-container">
+            <h3>Price: <span class="sales-price" name="burgers">00</span> €</h3>
+            <button class="sell-btn" name="burgers"></button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="overview">
-      <div id="title-box">
-        <div id="title"><h1>Capitalism: The Game</h1></div>
-        <div id="logo"><img src="/img/factory.png" alt="logo" /></div>
-      </div>
-      <div id="money-box">
-        <div id="current-money">
-          <p><span id="money-count">5000</span> €</p>
-        </div>
-        <div id="money-img">
-          <img src="/img/coins-2.png" alt="image of coins" />
-        </div>
-      </div>
-      <div id="msg-box">
-        <p>
-          Your Goal:<br />
-          Become a millionaire in one year!
-        </p>
-      </div>
-      <div id="date-box">
-        <div id="month-day">
-          <div id="month">
-            <p>Month: <span id="month-counter">02</span></p>
+      <section id="factories">
+        <!--Wheat Farm-->
+        <div class="factory-card" id="wheat farm">
+          <div class="factory-column c-1">
+            <img
+              class="factory-img"
+              src="/img/factory.png"
+              alt="factory image"
+            />
           </div>
-          <div id="day">
-            <p>Day: <span id="day-counter">13</span></p>
+          <div class="factory-column c-2">
+            <div class="factory-title">
+              <h2 class="title-text">Factory Name</h2>
+              <div id="amountOfFactories">
+                <p><span class="factoryCount">00</span></p>
+              </div>
+            </div>
+            <div class="factory-info">
+              <div class="info-row r-1 input">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-left.png"
+                    alt="arrow left"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Requires: <span class="inputAmount1">0</span>
+                    <span class="inputType1">Type1</span
+                    ><span class="inputAmount2"></span>
+                    <span class="inputType2"></span>
+                  </p>
+                </div>
+              </div>
+              <div class="info-row r-2 output">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-right.png"
+                    alt="arrow right"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Produces: <span class="outputAmount1">0</span>
+                    <span class="outputType1">Cow</span
+                    ><span class="outputAmount2"></span>
+                    <span class="outputType2"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="factory-column c-3">
+            <div class="factory-cost">
+              <h3>Cost: <span class="cost-text">10</span> €</h3>
+            </div>
+            <div class="factory-btn">
+              <button type="button" class="buy-btn" name="wheat farm">
+                BUY 1x
+              </button>
+            </div>
           </div>
         </div>
-        <div id="clock-img">
-          <img src="/img/clock.png" alt="image of a clock" />
+        <!--Mill-->
+        <div class="factory-card" id="mill">
+          <div class="factory-column c-1">
+            <img
+              class="factory-img"
+              src="/img/factory.png"
+              alt="factory image"
+            />
+          </div>
+          <div class="factory-column c-2">
+            <div class="factory-title">
+              <h2 class="title-text">Factory Name</h2>
+              <div id="amountOfFactories">
+                <p><span class="factoryCount">00</span></p>
+              </div>
+            </div>
+            <div class="factory-info">
+              <div class="info-row r-1 input">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-left.png"
+                    alt="arrow left"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Requires: <span class="inputAmount1">0</span>
+                    <span class="inputType1">Type1</span
+                    ><span class="inputAmount2"></span>
+                    <span class="inputType2"></span>
+                  </p>
+                </div>
+              </div>
+              <div class="info-row r-2 output">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-right.png"
+                    alt="arrow right"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Produces: <span class="outputAmount1">0</span>
+                    <span class="outputType1">Cow</span
+                    ><span class="outputAmount2"></span>
+                    <span class="outputType2"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="factory-column c-3">
+            <div class="factory-cost">
+              <h3>Cost: <span class="cost-text">10</span> €</h3>
+            </div>
+            <div class="factory-btn">
+              <button type="button" class="buy-btn" name="mill">BUY 1x</button>
+            </div>
+          </div>
+        </div>
+        <!--Cow Farm-->
+        <div class="factory-card" id="cow farm">
+          <div class="factory-column c-1">
+            <img
+              class="factory-img"
+              src="/img/factory.png"
+              alt="factory image"
+            />
+          </div>
+          <div class="factory-column c-2">
+            <div class="factory-title">
+              <h2 class="title-text">Factory Name</h2>
+              <div id="amountOfFactories">
+                <p><span class="factoryCount">00</span></p>
+              </div>
+            </div>
+            <div class="factory-info">
+              <div class="info-row r-1 input">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-left.png"
+                    alt="arrow left"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Requires: <span class="inputAmount1">0</span>
+                    <span class="inputType1">Type1</span
+                    ><span class="inputAmount2"></span>
+                    <span class="inputType2"></span>
+                  </p>
+                </div>
+              </div>
+              <div class="info-row r-2 output">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-right.png"
+                    alt="arrow right"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Produces: <span class="outputAmount1">0</span>
+                    <span class="outputType1">Cow</span
+                    ><span class="outputAmount2"></span>
+                    <span class="outputType2"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="factory-column c-3">
+            <div class="factory-cost">
+              <h3>Cost: <span class="cost-text">10</span> €</h3>
+            </div>
+            <div class="factory-btn">
+              <button type="button" class="buy-btn" name="cow farm">
+                BUY 1x
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--Bakery-->
+        <div class="factory-card" id="bakery">
+          <div class="factory-column c-1">
+            <img
+              class="factory-img"
+              src="/img/factory.png"
+              alt="factory image"
+            />
+          </div>
+          <div class="factory-column c-2">
+            <div class="factory-title">
+              <h2 class="title-text">Factory Name</h2>
+              <div id="amountOfFactories">
+                <p><span class="factoryCount">00</span></p>
+              </div>
+            </div>
+            <div class="factory-info">
+              <div class="info-row r-1 input">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-left.png"
+                    alt="arrow left"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Requires: <span class="inputAmount1">0</span>
+                    <span class="inputType1">Type1</span
+                    ><span class="inputAmount2"></span>
+                    <span class="inputType2"></span>
+                  </p>
+                </div>
+              </div>
+              <div class="info-row r-2 output">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-right.png"
+                    alt="arrow right"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Produces: <span class="outputAmount1">0</span>
+                    <span class="outputType1">Cow</span
+                    ><span class="outputAmount2"></span>
+                    <span class="outputType2"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="factory-column c-3">
+            <div class="factory-cost">
+              <h3>Cost: <span class="cost-text">10</span> €</h3>
+            </div>
+            <div class="factory-btn">
+              <button type="button" class="buy-btn" name="bakery">
+                BUY 1x
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--Butchery-->
+        <div class="factory-card" id="butchery">
+          <div class="factory-column c-1">
+            <img
+              class="factory-img"
+              src="/img/factory.png"
+              alt="factory image"
+            />
+          </div>
+          <div class="factory-column c-2">
+            <div class="factory-title">
+              <h2 class="title-text">Factory Name</h2>
+              <div id="amountOfFactories">
+                <p><span class="factoryCount">00</span></p>
+              </div>
+            </div>
+            <div class="factory-info">
+              <div class="info-row r-1 input">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-left.png"
+                    alt="arrow left"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Requires: <span class="inputAmount1">0</span>
+                    <span class="inputType1">Type1</span
+                    ><span class="inputAmount2"></span>
+                    <span class="inputType2"></span>
+                  </p>
+                </div>
+              </div>
+              <div class="info-row r-2 output">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-right.png"
+                    alt="arrow right"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Produces: <span class="outputAmount1">0</span>
+                    <span class="outputType1">Cow</span
+                    ><span class="outputAmount2"></span>
+                    <span class="outputType2"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="factory-column c-3">
+            <div class="factory-cost">
+              <h3>Cost: <span class="cost-text">10</span> €</h3>
+            </div>
+            <div class="factory-btn">
+              <button type="button" class="buy-btn" name="butchery">
+                BUY 1x
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--Burger Store-->
+        <div class="factory-card" id="burger store">
+          <div class="factory-column c-1">
+            <img
+              class="factory-img"
+              src="/img/factory.png"
+              alt="factory image"
+            />
+          </div>
+          <div class="factory-column c-2">
+            <div class="factory-title">
+              <h2 class="title-text">Factory Name</h2>
+              <div id="amountOfFactories">
+                <p><span class="factoryCount">00</span></p>
+              </div>
+            </div>
+            <div class="factory-info">
+              <div class="info-row r-1 input">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-left.png"
+                    alt="arrow left"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Requires: <span class="inputAmount1">0</span>
+                    <span class="inputType1">Type1</span
+                    ><span class="inputAmount2"></span>
+                    <span class="inputType2"></span>
+                  </p>
+                </div>
+              </div>
+              <div class="info-row r-2 output">
+                <div>
+                  <img
+                    class="arrow-img"
+                    src="/img/arrow-right.png"
+                    alt="arrow right"
+                  />
+                </div>
+                <div>
+                  <p>
+                    Produces: <span class="outputAmount1">0</span>
+                    <span class="outputType1">Cow</span
+                    ><span class="outputAmount2"></span>
+                    <span class="outputType2"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="factory-column c-3">
+            <div class="factory-cost">
+              <h3>Cost: <span class="cost-text">10</span> €</h3>
+            </div>
+            <div class="factory-btn">
+              <button type="button" class="buy-btn" name="burger store">
+                BUY 1x
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview">
+        <div id="title-box">
+          <div id="title"><h1>Capitalism: The Game</h1></div>
+          <div id="logo"><img src="/img/factory.png" alt="logo" /></div>
+        </div>
+        <div id="money-box">
+          <div id="current-money">
+            <p><span id="money-count">5000</span> €</p>
+          </div>
+          <div id="money-img">
+            <img src="/img/coins-2.png" alt="image of coins" />
+          </div>
+        </div>
+        <div id="msg-box">
+          <p>
+            Your Goal:<br />
+            Become a millionaire in one year!
+          </p>
+        </div>
+        <div id="date-box">
+          <div id="month-day">
+            <div id="month">
+              <p>Month: <span id="month-counter">02</span></p>
+            </div>
+            <div id="day">
+              <p>Day: <span id="day-counter">13</span></p>
+            </div>
+          </div>
+          <div id="clock-img">
+            <img src="/img/clock.png" alt="image of a clock" />
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="game-over-screen">
+      <div><h1 id="game-over-title">GAME OVER</h1></div>
+      <div><h2 id="game-over-msg">your message here...</h2></div>
+      <div>
+        <p>Your Score: <span id="game-over-score">000</span></p>
+      </div>
+      <div id="game-over-btns">
+        <div id="game-over-restart">
+          <button id="go-restart-btn">RESTART GAME</button>
+        </div>
+        <div id="game-over-menu">
+          <button id="go-menu-btn">MAIN MENU</button>
         </div>
       </div>
-    </section>
+    </div>
 
     <script src="/global-variables.js"></script>
     <script src="/classes.js"></script>
