@@ -1,10 +1,11 @@
+const titleOfGame = "Capitalism: The Game";
 let gameOver = false;
 const secondsPerDay = 2;
 const secondsBeforeGameOverScreen = 6;
 const secondsForBgMusicFadeOut = 8;
 const startMoney = 9999;
-const startMonth = 12;
-const startDay = 27;
+const startMonth = 1;
+const startDay = 1;
 const loseMessage =
   "You lost! You did not manage to become a millionaire in time.  :(";
 const winMessage = "You won!!! Congrats, you are a millionaire!!! :)";

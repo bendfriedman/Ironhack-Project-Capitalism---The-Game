@@ -1,3 +1,6 @@
+const splashLogo = document.getElementById("splash-logo");
+const hiddenImage = document.getElementById("hidden-dc-image");
+const splashTitle = document.getElementById("splash-title");
 const splashStartBtn = document.getElementById("splash-start-btn");
 const splashScreen = document.getElementById("splash-screen");
 const gameScreen = document.getElementById("game-screen");
@@ -13,7 +16,6 @@ const monthCounter = document.getElementById("month-counter");
 const dayCounter = document.getElementById("day-counter");
 const factoryCards = document.querySelectorAll(".factory-card");
 let gameLoopTimerId = null;
-// let productionCheckTimer = null;
 let dayTimerId = null;
 
 let currentMoney = startMoney;
@@ -124,18 +126,42 @@ const activeFactories = [
   burgerStore,
 ];
 
+//Initial EventListeners for the UI
+let logoTimerId = null;
+let logoOpacity = 1;
+splashLogo.addEventListener("mousedown", () => {
+  if (logoTimerId === null) {
+    logoTimerId = setInterval(() => {
+      logoOpacity -= 0.01;
+      splashLogo.style.opacity = logoOpacity;
+      hiddenImage.style.opacity = 1 - logoOpacity;
+      if (logoOpacity <= 0) {
+        splashTitle.innerText =
+          '"If you’re good at something, never do it for free." - The Joker';
+      }
+    }, 10);
+  }
+});
+splashLogo.addEventListener("mouseup", () => {
+  clearInterval(logoTimerId);
+  logoTimerId = null;
+  logoOpacity = 1;
+  splashLogo.style.opacity = logoOpacity;
+  hiddenImage.style.opacity = 0;
+  splashTitle.innerText = titleOfGame;
+});
+
 splashStartBtn.addEventListener("click", () => {
   startGame();
 });
-
 gameOverRestartBtn.addEventListener("click", () => {
   startGame();
 });
-
 gameOverMenuBtn.addEventListener("click", () => {
   switchScreen(splashScreen);
 });
 
+//general functions
 function switchScreen(switchedScreen) {
   screens.forEach((screen) => {
     if (screen != switchedScreen) {
@@ -154,6 +180,7 @@ function capitalizeFirstLetters(text) {
   return newText.join(" ");
 }
 
+//game loop functions
 function update() {
   moneyCounter.innerText = currentMoney.toLocaleString();
   monthCounter.innerText = currentMonth.toString().padStart(2, "0");
@@ -188,38 +215,6 @@ function startDayTimer() {
   }, 1000);
 }
 
-function GameOver() {
-  if (currentDay === 0 && currentMonth === 0) {
-    gameOver = true;
-    update();
-    clearInterval(gameLoopTimerId);
-    gameOverScore.innerText = currentMoney;
-    if (currentMoney < 1000 * 1000) {
-      gameOverMsg.innerText = loseMessage;
-      console.log("GAME OVER! YOU LOSE!");
-    } else {
-      gameOverMsg.innerText = winMessage;
-      console.log("CONGRATS, YOU WON!!!");
-    }
-
-    let i = 0;
-    let tempVolumeStorage = bgMusic.volume;
-    const gameOverTimerId = setInterval(() => {
-      i++;
-
-      if (i % secondsBeforeGameOverScreen === 0) {
-        switchScreen(gameOverScreen);
-      }
-      if (i % secondsForBgMusicFadeOut === 0) {
-        bgMusic.pause();
-        clearInterval(gameOverTimerId);
-      } else {
-        bgMusic.volume -= tempVolumeStorage / secondsForBgMusicFadeOut;
-      }
-    }, 1000);
-  }
-}
-
 function startGameLoop() {
   gameOver = false;
   resetGame();
@@ -252,6 +247,39 @@ function resetGame() {
   factoryCards.forEach((card) => card.classList.remove("active"));
 }
 
+function GameOver() {
+  if (currentDay === 0 && currentMonth === 0) {
+    gameOver = true;
+    update();
+    clearInterval(gameLoopTimerId);
+    gameOverScore.innerText = currentMoney.toLocaleString();
+    if (currentMoney < 1000 * 1000) {
+      gameOverMsg.innerText = loseMessage;
+      console.log("GAME OVER! YOU LOSE!");
+    } else {
+      gameOverMsg.innerText = winMessage;
+      console.log("CONGRATS, YOU WON!!!");
+    }
+
+    let i = 0;
+    let tempVolumeStorage = bgMusic.volume;
+    const gameOverTimerId = setInterval(() => {
+      i++;
+
+      if (i % secondsBeforeGameOverScreen === 0) {
+        switchScreen(gameOverScreen);
+      }
+      if (i % secondsForBgMusicFadeOut === 0) {
+        bgMusic.pause();
+        clearInterval(gameOverTimerId);
+      } else {
+        bgMusic.volume -= tempVolumeStorage / secondsForBgMusicFadeOut;
+      }
+    }, 1000);
+  }
+}
+
+//UI refresh when buttons are clicked
 function updateCards() {
   factoryCards.forEach((card) => {
     activeFactories.forEach((factory) => {
