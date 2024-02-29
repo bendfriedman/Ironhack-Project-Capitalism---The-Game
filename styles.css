@@ -45,13 +45,14 @@ h3 {
   opacity: 0;
 }
 
-#start-btn-container > button {
+#splash-start-btn {
   width: 300px;
   height: 100px;
   font-weight: bold;
   border-radius: 20px;
   background-color: #8684dc;
   border-color: #bcbbff;
+  cursor: pointer;
   /* margin-bottom: 50px; */
 }
 
@@ -129,6 +130,7 @@ section {
   background-size: 30px 30px;
   background-position: center;
   background-color: #26c224;
+  cursor: pointer;
 }
 
 .sell-btn:active {
@@ -227,6 +229,7 @@ section {
   border-radius: 50%;
   background-color: #8684dc;
   border-color: #bcbbff;
+  cursor: pointer;
 }
 
 #overview > div {
@@ -234,6 +237,47 @@ section {
   height: 100px;
   background-color: white;
   margin: 40px 0px;
+}
+
+#overview-btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.overview-btns-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+}
+
+.overview-btn {
+  cursor: pointer;
+}
+
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  transform: translate(0%, 170%);
+}
+
+.overview-btns-column:hover .tooltip {
+  visibility: visible;
+}
+
+#volume-img {
+  width: 50px;
+}
+
+#overview-restart-img {
+  width: 40px;
+}
+
+#overview-close-btn {
+  width: 30px;
 }
 
 #title-box,
@@ -324,4 +368,5 @@ section {
   background-color: #8684dc;
   border-color: #bcbbff;
   font-weight: bold;
+  cursor: pointer;
 }

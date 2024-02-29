@@ -12,6 +12,9 @@ const gameOverMenuBtn = document.getElementById("go-menu-btn");
 const moneyCounter = document.getElementById("money-count");
 const resourceCounter = document.querySelectorAll(".res-counter");
 const resourceCards = document.querySelectorAll(".resource-card");
+const volumeBtn = document.getElementById("volume-img");
+const overviewRestartBtn = document.getElementById("overview-restart-img");
+const overviewCloseBtn = document.getElementById("overview-close-btn");
 const monthCounter = document.getElementById("month-counter");
 const dayCounter = document.getElementById("day-counter");
 const factoryCards = document.querySelectorAll(".factory-card");
@@ -21,6 +24,11 @@ let dayTimerId = null;
 let currentMoney = startMoney;
 let currentMonth = startMonth;
 let currentDay = startDay;
+bgMusic.volume = startBgMusicVolume;
+buySound.volume = startBuySoundVolume;
+sellSound.volume = startSellSoundVolume;
+let volumeState = 2;
+
 const daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 const screens = [splashScreen, gameScreen, gameOverScreen];
@@ -161,7 +169,48 @@ gameOverMenuBtn.addEventListener("click", () => {
   switchScreen(splashScreen);
 });
 
+volumeBtn.addEventListener("click", () => {
+  if (volumeState === 0) {
+    volumeState = 2;
+  } else {
+    volumeState--;
+  }
+  checkVolume();
+});
+overviewRestartBtn.addEventListener("click", () => {
+  startGame();
+});
+overviewCloseBtn.addEventListener("click", () => {
+  currentMonth = 0;
+  currentDay = 0;
+  switchScreen(gameOverScreen);
+  checkGameOver();
+});
+
 //general functions
+function setVolume(percentage) {
+  bgMusic.volume = startBgMusicVolume * (percentage / 100);
+  buySound.volume = startBuySoundVolume * (percentage / 100);
+  sellSound.volume = startSellSoundVolume * (percentage / 100);
+}
+
+function checkVolume() {
+  switch (volumeState) {
+    case 0:
+      volumeBtn.src = "img/volume-mute.png";
+      setVolume(0);
+      break;
+    case 1:
+      volumeBtn.src = "img/volume-low.png";
+      setVolume(30);
+      break;
+    case 2:
+      volumeBtn.src = "img/volume-up.png";
+      setVolume(100);
+      break;
+  }
+}
+
 function switchScreen(switchedScreen) {
   screens.forEach((screen) => {
     if (screen != switchedScreen) {
@@ -208,7 +257,7 @@ function startDayTimer() {
       } else {
         currentMonth = 0;
         currentDay = 0;
-        GameOver();
+        checkGameOver();
         clearInterval(dayTimerId);
       }
     }
@@ -217,7 +266,6 @@ function startDayTimer() {
 
 function startGameLoop() {
   gameOver = false;
-  resetGame();
   gameLoopTimerId = setInterval(() => {
     update();
   }, 30 / 1000);
@@ -229,6 +277,7 @@ function startGameLoop() {
 
 function startGame() {
   switchScreen(gameScreen);
+  resetGame();
   startGameLoop();
 }
 
@@ -237,7 +286,10 @@ function resetGame() {
   currentMonth = startMonth;
   currentMoney = startMoney;
   bgMusic.currentTime = 0;
-  bgMusic.volume = startBgMusicVolume;
+  volumeState = 2;
+  checkVolume();
+  gameOverRestartBtn.disabled = true;
+  gameOverMenuBtn.disabled = true;
   //reset resources to 0
   for (resource in warehouse) {
     warehouse[resource] = 0;
@@ -245,9 +297,12 @@ function resetGame() {
   //reset factories
   activeFactories.forEach((factory) => (factory.factoryCount = 0));
   factoryCards.forEach((card) => card.classList.remove("active"));
+  //clearTimer
+  clearInterval(gameLoopTimerId);
+  clearInterval(dayTimerId);
 }
 
-function GameOver() {
+function checkGameOver() {
   if (currentDay === 0 && currentMonth === 0) {
     gameOver = true;
     update();
@@ -271,6 +326,8 @@ function GameOver() {
       }
       if (i % secondsForBgMusicFadeOut === 0) {
         bgMusic.pause();
+        gameOverRestartBtn.disabled = false;
+        gameOverMenuBtn.disabled = false;
         clearInterval(gameOverTimerId);
       } else {
         bgMusic.volume -= tempVolumeStorage / secondsForBgMusicFadeOut;
