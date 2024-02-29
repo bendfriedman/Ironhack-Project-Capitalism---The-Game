@@ -128,7 +128,7 @@ const burgerStore = new Factory(
   999,
   null,
   null,
-  50000
+  100000
 );
 
 const factories = [wheatFarm, mill, cowFactory, bakery, butchery, burgerStore];
@@ -422,31 +422,3 @@ function updateCards() {
       resourePrices[e.querySelector(".res-counter").id];
   });
 }
-
-// function checkBtnClicked() {
-//   //BuyBtns
-//   const allBuyBtns = document.querySelectorAll(".buy-btn");
-//   allBuyBtns.forEach((button) => {
-//     button.addEventListener("click", () => {
-//       activeFactories.forEach((factory) => {
-//         if (factory.factoryName === button.name) {
-//           factory.buildFactory();
-//         }
-//       });
-//       updateCards();
-//     });
-//   });
-
-//   //SellBtns
-//   const allSellBtns = document.querySelectorAll(".sell-btn");
-//   allSellBtns.forEach((button) => {
-//     button.addEventListener("click", () => {
-//       if (warehouse[button.name] > 0 && !gameOver) {
-//         let tempAmount = warehouse[button.name];
-//         warehouse[button.name] -= tempAmount;
-//         currentMoney += resourePrices[button.name] * tempAmount;
-//         sellSound.play();
-//       }
-//     });
-//   });
-// }
