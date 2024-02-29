@@ -143,6 +143,33 @@ const activeFactories = [
 ];
 
 //Initial EventListeners for the UI
+
+//BuyBtns
+const allBuyBtns = document.querySelectorAll(".buy-btn");
+allBuyBtns.forEach((button) => {
+  button.addEventListener("click", () => {
+    activeFactories.forEach((factory) => {
+      if (factory.factoryName === button.name) {
+        factory.buildFactory();
+      }
+    });
+    updateCards();
+  });
+});
+
+//SellBtns
+const allSellBtns = document.querySelectorAll(".sell-btn");
+allSellBtns.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (warehouse[button.name] > 0 && !gameOver) {
+      let tempAmount = warehouse[button.name];
+      warehouse[button.name] -= tempAmount;
+      currentMoney += resourePrices[button.name] * tempAmount;
+      sellSound.play();
+    }
+  });
+});
+//Easter Egg
 let logoTimerId = null;
 let logoOpacity = 1;
 splashLogo.addEventListener("mousedown", () => {
@@ -166,7 +193,7 @@ splashLogo.addEventListener("mouseup", () => {
   hiddenImage.style.opacity = 0;
   splashTitle.innerText = titleOfGame;
 });
-
+//UI Btns
 splashStartBtn.addEventListener("click", () => {
   startGame();
 });
@@ -176,7 +203,7 @@ gameOverRestartBtn.addEventListener("click", () => {
 gameOverMenuBtn.addEventListener("click", () => {
   switchScreen(splashScreen);
 });
-
+//Overview setting btns
 volumeBtn.addEventListener("click", () => {
   if (volumeState === 0) {
     volumeState = 2;
@@ -279,7 +306,6 @@ function startGameLoop() {
   }, 30 / 1000);
   startDayTimer();
   updateCards();
-  checkBtnClicked();
   bgMusic.play();
 }
 
@@ -397,30 +423,30 @@ function updateCards() {
   });
 }
 
-function checkBtnClicked() {
-  //BuyBtns
-  const allBuyBtns = document.querySelectorAll(".buy-btn");
-  allBuyBtns.forEach((button) => {
-    button.addEventListener("click", () => {
-      activeFactories.forEach((factory) => {
-        if (factory.factoryName === button.name) {
-          factory.buildFactory();
-        }
-      });
-      updateCards();
-    });
-  });
+// function checkBtnClicked() {
+//   //BuyBtns
+//   const allBuyBtns = document.querySelectorAll(".buy-btn");
+//   allBuyBtns.forEach((button) => {
+//     button.addEventListener("click", () => {
+//       activeFactories.forEach((factory) => {
+//         if (factory.factoryName === button.name) {
+//           factory.buildFactory();
+//         }
+//       });
+//       updateCards();
+//     });
+//   });
 
-  //SellBtns
-  const allSellBtns = document.querySelectorAll(".sell-btn");
-  allSellBtns.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (warehouse[button.name] > 0 && !gameOver) {
-        let tempAmount = warehouse[button.name];
-        warehouse[button.name] -= tempAmount;
-        currentMoney += resourePrices[button.name] * tempAmount;
-        sellSound.play();
-      }
-    });
-  });
-}
+//   //SellBtns
+//   const allSellBtns = document.querySelectorAll(".sell-btn");
+//   allSellBtns.forEach((button) => {
+//     button.addEventListener("click", () => {
+//       if (warehouse[button.name] > 0 && !gameOver) {
+//         let tempAmount = warehouse[button.name];
+//         warehouse[button.name] -= tempAmount;
+//         currentMoney += resourePrices[button.name] * tempAmount;
+//         sellSound.play();
+//       }
+//     });
+//   });
+// }
