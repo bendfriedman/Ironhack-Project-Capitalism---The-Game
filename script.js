@@ -7,6 +7,10 @@ const gameScreen = document.getElementById("game-screen");
 const gameOverScreen = document.getElementById("game-over-screen");
 const gameOverMsg = document.getElementById("game-over-msg");
 const gameOverScore = document.getElementById("game-over-score");
+const gameOverLoadingDisplay = document.getElementById(
+  "game-over-loading-display"
+);
+const gameOverWaitCounter = document.getElementById("game-over-wait-counter");
 const gameOverRestartBtn = document.getElementById("go-restart-btn");
 const gameOverMenuBtn = document.getElementById("go-menu-btn");
 const moneyCounter = document.getElementById("money-count");
@@ -28,6 +32,10 @@ bgMusic.volume = startBgMusicVolume;
 buySound.volume = startBuySoundVolume;
 sellSound.volume = startSellSoundVolume;
 let volumeState = 2;
+const gameOverLoadingTime = Math.max(
+  secondsForBgMusicFadeOut,
+  secondsBeforeGameOverScreen
+);
 
 const daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -288,6 +296,8 @@ function resetGame() {
   bgMusic.currentTime = 0;
   volumeState = 2;
   checkVolume();
+  gameOverLoadingDisplay.style.opacity = 1;
+  gameOverWaitCounter.innerText = gameOverLoadingTime;
   gameOverRestartBtn.disabled = true;
   gameOverMenuBtn.disabled = true;
   //reset resources to 0
@@ -310,22 +320,22 @@ function checkGameOver() {
     gameOverScore.innerText = currentMoney.toLocaleString();
     if (currentMoney < 1000 * 1000) {
       gameOverMsg.innerText = loseMessage;
-      console.log("GAME OVER! YOU LOSE!");
     } else {
       gameOverMsg.innerText = winMessage;
-      console.log("CONGRATS, YOU WON!!!");
     }
 
     let i = 0;
     let tempVolumeStorage = bgMusic.volume;
     const gameOverTimerId = setInterval(() => {
       i++;
+      gameOverWaitCounter.innerText = gameOverLoadingTime - i;
 
       if (i % secondsBeforeGameOverScreen === 0) {
         switchScreen(gameOverScreen);
       }
       if (i % secondsForBgMusicFadeOut === 0) {
         bgMusic.pause();
+        gameOverLoadingDisplay.style.opacity = 0;
         gameOverRestartBtn.disabled = false;
         gameOverMenuBtn.disabled = false;
         clearInterval(gameOverTimerId);

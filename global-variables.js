@@ -3,7 +3,7 @@ let gameOver = false;
 const secondsPerDay = 2;
 const secondsBeforeGameOverScreen = 3;
 const secondsForBgMusicFadeOut = 5;
-const startMoney = 9999;
+const startMoney = 50;
 const startMonth = 1;
 const startDay = 1;
 const loseMessage =
@@ -11,7 +11,7 @@ const loseMessage =
 const winMessage = "You won!!! Congrats, you are a millionaire!!! :)";
 //music + sounds
 const buySound = new Audio("sounds/reload.mp3");
-const startBuySoundVolume = 0.3;
+const startBuySoundVolume = 0.2;
 const bgMusic = new Audio("sounds/025_A_New_Town.mp3");
 const startBgMusicVolume = 0.2;
 bgMusic.loop = true;
