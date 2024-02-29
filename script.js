@@ -35,7 +35,7 @@ const wheatFarm = new Factory(
   10,
   null,
   0,
-  10
+  40
 );
 
 const mill = new Factory(
@@ -50,7 +50,7 @@ const mill = new Factory(
   20,
   null,
   null,
-  20
+  200
 );
 
 const cowFactory = new Factory(
@@ -65,7 +65,7 @@ const cowFactory = new Factory(
   1,
   "milk",
   5,
-  100
+  500
 );
 
 const bakery = new Factory(
@@ -80,7 +80,7 @@ const bakery = new Factory(
   200,
   null,
   null,
-  20
+  400
 );
 
 const butchery = new Factory(
@@ -95,7 +95,7 @@ const butchery = new Factory(
   10,
   null,
   null,
-  250
+  2500
 );
 
 const burgerStore = new Factory(
@@ -110,7 +110,7 @@ const burgerStore = new Factory(
   999,
   null,
   null,
-  5000
+  50000
 );
 
 const factories = [wheatFarm, mill, cowFactory, bakery, butchery, burgerStore];
@@ -249,6 +249,7 @@ function resetGame() {
   }
   //reset factories
   activeFactories.forEach((factory) => (factory.factoryCount = 0));
+  factoryCards.forEach((card) => card.classList.remove("active"));
 }
 
 function updateCards() {

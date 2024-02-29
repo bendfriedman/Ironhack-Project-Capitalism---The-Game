@@ -1,10 +1,10 @@
 let gameOver = false;
-const secondsPerDay = 3;
+const secondsPerDay = 2;
 const secondsBeforeGameOverScreen = 6;
-const secondsForBgMusicFadeOut = 10;
-const startMoney = 10;
-const startMonth = 1;
-const startDay = 1;
+const secondsForBgMusicFadeOut = 8;
+const startMoney = 9999;
+const startMonth = 12;
+const startDay = 27;
 const loseMessage =
   "You lost! You did not manage to become a millionaire in time.  :(";
 const winMessage = "You won!!! Congrats, you are a millionaire!!! :)";
@@ -35,5 +35,5 @@ const resourePrices = {
   milk: 1,
   bread: 0.2,
   meat: 20,
-  burgers: 999,
+  burgers: 100,
 };
