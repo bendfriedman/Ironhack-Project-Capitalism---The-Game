@@ -29,11 +29,11 @@ const warehouse = {
 };
 
 const resourePrices = {
-  wheat: 0.5,
+  wheat: 0.1,
   flour: 1,
   cows: 100,
   milk: 1,
-  bread: 0.2,
+  bread: 0.5,
   meat: 20,
-  burgers: 100,
+  burgers: 50,
 };

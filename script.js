@@ -50,7 +50,7 @@ const wheatFarm = new Factory(
   0,
   1,
   "wheat",
-  10,
+  30,
   null,
   0,
   40
@@ -95,7 +95,7 @@ const bakery = new Factory(
   null,
   1,
   "bread",
-  200,
+  100,
   null,
   null,
   400
