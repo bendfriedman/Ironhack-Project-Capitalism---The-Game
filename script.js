@@ -128,7 +128,7 @@ const burgerStore = new Factory(
   999,
   null,
   null,
-  100000
+  90000
 );
 
 const factories = [wheatFarm, mill, cowFactory, bakery, butchery, burgerStore];

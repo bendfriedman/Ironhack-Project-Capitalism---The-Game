@@ -1,9 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:100,300,700");
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
 
 html,
 body {
-  /* font-family: "Roboto"; */
   font-family: "Fredoka", sans-serif;
   margin: 0;
   padding: 0;
@@ -19,10 +17,10 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  /* font-family: "Roboto Condensed"; */
 }
 
-h3 {
+h3,
+h4 {
   font-weight: 500;
 }
 
@@ -117,6 +115,7 @@ section {
 .sell-btn-container {
   margin-right: 10px;
   text-align: end;
+  width: 40%;
 }
 
 .sell-btn {
@@ -158,6 +157,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 25%;
 }
 
 .factory-column.c-2 {
@@ -220,6 +220,11 @@ section {
 .factory-column.c-3 {
   display: flex;
   align-items: end;
+}
+
+.factory-cost,
+.factory-btn {
+  margin-right: 30px;
 }
 
 .factory-btn > button {
