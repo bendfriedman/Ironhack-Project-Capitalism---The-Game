@@ -390,21 +390,23 @@ function updateCards() {
         if (factory.amountOfInputs === 0) {
           card.querySelector(".input").style.display = "none";
         } else {
-          card.querySelector(".inputAmount1").innerText = factory.inputAmount1;
+          card.querySelector(".inputAmount1").innerText =
+            factory.inputAmount1 * factory.factoryCount;
           card.querySelector(".inputType1").innerText = factory.inputType1;
           if (factory.amountOfInputs === 2) {
             card.querySelector(".inputAmount2").innerText =
-              " + " + factory.inputAmount2;
+              " + " + factory.inputAmount2 * factory.factoryCount;
             card.querySelector(".inputType2").innerText = factory.inputType2;
           }
         }
 
         //update Outputs on factory cards
-        card.querySelector(".outputAmount1").innerText = factory.outputAmount1;
+        card.querySelector(".outputAmount1").innerText =
+          factory.outputAmount1 * factory.factoryCount;
         card.querySelector(".outputType1").innerText = factory.outputType1;
         if (factory.amountOfOutputs === 2) {
           card.querySelector(".outputAmount2").innerText =
-            " + " + factory.outputAmount2;
+            " + " + factory.outputAmount2 * factory.factoryCount;
           card.querySelector(".outputType2").innerText = factory.outputType2;
         }
 
